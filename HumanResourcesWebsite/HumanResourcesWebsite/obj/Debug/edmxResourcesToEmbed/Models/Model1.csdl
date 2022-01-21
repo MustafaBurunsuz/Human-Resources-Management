@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FindJobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AD">
+    <Key>
+      <PropertyRef Name="AdID" />
+    </Key>
+    <Property Name="AdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NumberOfApplications" Type="Int32" />
+    <Property Name="Information" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdStartDate" Type="DateTime" Precision="0" />
+    <Property Name="AdEndDate" Type="DateTime" Precision="0" />
+    <Property Name="Experiences" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MilitaryState" Type="Boolean" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="SectorID" Type="Int32" />
+    <Property Name="Criterion1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Criterion2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Criterion3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Criterion4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Criterion5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_AD_Company" FromRole="AD" ToRole="Company" />
+    <NavigationProperty Name="Sector" Relationship="Self.FK_AD_Sectors" FromRole="AD" ToRole="Sectors" />
+    <NavigationProperty Name="ApplicantAds" Relationship="Self.FK_ApplicantAd_AD1" FromRole="AD" ToRole="ApplicantAd" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CvLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MilitaryState" Type="Boolean" />
+    <Property Name="ExperienceYear" Type="Int32" />
+    <Property Name="GraduationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Courses" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <NavigationProperty Name="ApplicantAds" Relationship="Self.FK_ApplicantAd_Applicant1" FromRole="Applicant" ToRole="ApplicantAd" />
+  </EntityType>
+  <EntityType Name="ApplicantAd">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicantID" Type="Int32" Nullable="false" />
+    <Property Name="AdID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="AD" Relationship="Self.FK_ApplicantAd_AD1" FromRole="ApplicantAd" ToRole="AD" />
+    <NavigationProperty Name="Applicant" Relationship="Self.FK_ApplicantAd_Applicant1" FromRole="ApplicantAd" ToRole="Applicant" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EMail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NumberOfWorkers" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="WebSite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FoundationYear" Type="Int32" />
+    <Property Name="SectorID" Type="Int32" />
+    <NavigationProperty Name="ADs" Relationship="Self.FK_AD_Company" FromRole="Company" ToRole="AD" />
+    <NavigationProperty Name="Sector" Relationship="Self.FK_Company_Sectors" FromRole="Company" ToRole="Sectors" />
+    <Property Name="LogoLink" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sector">
+    <Key>
+      <PropertyRef Name="SectorID" />
+    </Key>
+    <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SectorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ADs" Relationship="Self.FK_AD_Sectors" FromRole="Sectors" ToRole="AD" />
+    <NavigationProperty Name="Companies" Relationship="Self.FK_Company_Sectors" FromRole="Sectors" ToRole="Company" />
+  </EntityType>
+  <Association Name="FK_AD_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="AD" Type="Self.AD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="AD">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AD_Sectors">
+    <End Role="Sectors" Type="Self.Sector" Multiplicity="0..1" />
+    <End Role="AD" Type="Self.AD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sectors">
+        <PropertyRef Name="SectorID" />
+      </Principal>
+      <Dependent Role="AD">
+        <PropertyRef Name="SectorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicantAd_AD1">
+    <End Role="AD" Type="Self.AD" Multiplicity="1" />
+    <End Role="ApplicantAd" Type="Self.ApplicantAd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AD">
+        <PropertyRef Name="AdID" />
+      </Principal>
+      <Dependent Role="ApplicantAd">
+        <PropertyRef Name="AdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicantAd_Applicant1">
+    <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+    <End Role="ApplicantAd" Type="Self.ApplicantAd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applicant">
+        <PropertyRef Name="ApplicantID" />
+      </Principal>
+      <Dependent Role="ApplicantAd">
+        <PropertyRef Name="ApplicantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_Sectors">
+    <End Role="Sectors" Type="Self.Sector" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sectors">
+        <PropertyRef Name="SectorID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="SectorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FindJobEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADs" EntityType="Self.AD" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Applicants" EntityType="Self.Applicant" />
+    <EntitySet Name="ApplicantAds" EntityType="Self.ApplicantAd" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Sectors" EntityType="Self.Sector" />
+    <AssociationSet Name="FK_AD_Company" Association="Self.FK_AD_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="AD" EntitySet="ADs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AD_Sectors" Association="Self.FK_AD_Sectors">
+      <End Role="Sectors" EntitySet="Sectors" />
+      <End Role="AD" EntitySet="ADs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicantAd_AD1" Association="Self.FK_ApplicantAd_AD1">
+      <End Role="AD" EntitySet="ADs" />
+      <End Role="ApplicantAd" EntitySet="ApplicantAds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicantAd_Applicant1" Association="Self.FK_ApplicantAd_Applicant1">
+      <End Role="Applicant" EntitySet="Applicants" />
+      <End Role="ApplicantAd" EntitySet="ApplicantAds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_Sectors" Association="Self.FK_Company_Sectors">
+      <End Role="Sectors" EntitySet="Sectors" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="FindJobModel.sysdiagram" />
+    <EntitySet Name="Messages" EntityType="FindJobModel.Message" />
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" />
+    <Property Name="Sender" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Receiver" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Contant" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+</Schema>

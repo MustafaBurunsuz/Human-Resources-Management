@@ -1,0 +1,45 @@
+﻿@model List<HumanResourcesWebsite.Models.ShowAllApplicantViewModel>
+@{
+    ViewBag.Title = "ShowAllApplicant";
+    Layout = "~/Shared/CompanyLayout.cshtml";
+}
+
+<h2>All Applicants</h2>
+<table class="table table-bordered" >
+    <thead class="bg-danger">
+        <tr>
+            
+            <th>Name</th>
+            <th>Surname </th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Adress</th>
+            <th>MilitaryState</th>
+            <th>ExperienceYear</th>
+            <th>GraduationLevel</th>
+            <th>Courses</th>
+            <th>Point</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Ad</td>
+            <td>@item.Soyad</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.Adress</td>
+            <td>@item.MilitaryState</td>
+            <td>@item.ExperienceYear</td>
+            <td>@item.GraduationLevel</td>
+            <td>@item.Courses</td>
+            <td>@item.Point</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+

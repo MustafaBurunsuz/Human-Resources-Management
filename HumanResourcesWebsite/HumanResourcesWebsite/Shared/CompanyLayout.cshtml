@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 240px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                margin-top: 10px;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                }
+
+        .main {
+            margin-left: 240px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="#" class="font-weight-bold text-white"><i class="glyphicon glyphicon-user"></i>&nbsp;Welcome @Session["Email"].ToString()</a>
+        <a href="/CompanyAD/Index"><i class="glyphicon glyphicon-book"></i>&nbsp; ADS </a>
+        <a href="/CompanyPanel/Index"><i class="glyphicon glyphicon-list-alt"></i>&nbsp; İnformation</a>
+        <a href="/MessagesCompany/Index"><i class="glyphicon glyphicon-envelope"></i>&nbsp; Messages</a>
+        
+        <a href="/CompanyAD/ShowAllApplicant"><i class="glyphicon glyphicon-user"></i>&nbsp; Applicants</a>
+        <a href="/Home/Index"><i class="glyphicon glyphicon-picture"></i>&nbsp; Display</a>
+        <a href="/CompanyLogin/Logout"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp; LogOut</a>
+    </div>
+    
+    <div class="main">
+        @RenderBody()
+    </div>
+
+
+</body>
+</html>

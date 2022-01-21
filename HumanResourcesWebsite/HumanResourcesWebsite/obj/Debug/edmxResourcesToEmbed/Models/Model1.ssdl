@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FindJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AD">
+    <Key>
+      <PropertyRef Name="AdID" />
+    </Key>
+    <Property Name="AdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="NumberOfApplications" Type="int" />
+    <Property Name="Information" Type="varchar" MaxLength="50" />
+    <Property Name="AdStartDate" Type="smalldatetime" />
+    <Property Name="AdEndDate" Type="smalldatetime" />
+    <Property Name="Experiences" Type="varchar" MaxLength="50" />
+    <Property Name="EducationLevel" Type="varchar" MaxLength="50" />
+    <Property Name="MilitaryState" Type="bit" />
+    <Property Name="Price" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="SectorID" Type="int" />
+    <Property Name="Criterion1" Type="varchar" MaxLength="500" />
+    <Property Name="Criterion2" Type="varchar" MaxLength="500" />
+    <Property Name="Criterion3" Type="varchar" MaxLength="500" />
+    <Property Name="Criterion4" Type="varchar" MaxLength="500" />
+    <Property Name="Criterion5" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Adress" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="CvLink" Type="varchar" MaxLength="100" />
+    <Property Name="MilitaryState" Type="bit" />
+    <Property Name="ExperienceYear" Type="int" />
+    <Property Name="GraduationLevel" Type="varchar" MaxLength="50" />
+    <Property Name="Courses" Type="int" />
+    <Property Name="Point" Type="int" />
+  </EntityType>
+  <EntityType Name="ApplicantAd">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicantID" Type="int" Nullable="false" />
+    <Property Name="AdID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="smalldatetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMail" Type="varchar" MaxLength="40" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="40" />
+    <Property Name="Adress" Type="varchar" MaxLength="500" />
+    <Property Name="NumberOfWorkers" Type="int" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" />
+    <Property Name="WebSite" Type="varchar" MaxLength="50" />
+    <Property Name="FoundationYear" Type="int" />
+    <Property Name="SectorID" Type="int" />
+    <Property Name="LogoLink" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Receiver" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Contant" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Date" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sectors">
+    <Key>
+      <PropertyRef Name="SectorID" />
+    </Key>
+    <Property Name="SectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SectorName" Type="varchar" MaxLength="50" />
+    <Property Name="PhotoLink" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_AD_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="AD" Type="Self.AD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="AD">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AD_Sectors">
+    <End Role="Sectors" Type="Self.Sectors" Multiplicity="0..1" />
+    <End Role="AD" Type="Self.AD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sectors">
+        <PropertyRef Name="SectorID" />
+      </Principal>
+      <Dependent Role="AD">
+        <PropertyRef Name="SectorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_Sectors">
+    <End Role="Sectors" Type="Self.Sectors" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sectors">
+        <PropertyRef Name="SectorID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="SectorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FindJobModelStoreContainer">
+    <EntitySet Name="AD" EntityType="Self.AD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicantAd" EntityType="Self.ApplicantAd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sectors" EntityType="Self.Sectors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AD_Company" Association="Self.FK_AD_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="AD" EntitySet="AD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AD_Sectors" Association="Self.FK_AD_Sectors">
+      <End Role="Sectors" EntitySet="Sectors" />
+      <End Role="AD" EntitySet="AD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_Sectors" Association="Self.FK_Company_Sectors">
+      <End Role="Sectors" EntitySet="Sectors" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

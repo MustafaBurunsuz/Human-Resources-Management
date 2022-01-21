@@ -1,0 +1,90 @@
+﻿@model IEnumerable<HumanResourcesWebsite.Models.ApplicantAd>
+
+@{
+    ViewBag.Title = "Myapplication";
+    Layout = "~/Shared/_homeLayout.cshtml";
+}
+
+<div class="w-50 mx-auto my-4">
+    <h3 class="bg-danger p-4 text-white text-center">My Applications</h3>
+    @if (@ViewBag.AdCount == 1)
+    {
+        <div class="alert alert-info text-center">
+            You have @ViewBag.AdCount application
+        </div>
+    }
+
+    else
+    {
+        <div class="alert alert-info text-center">
+            You have @ViewBag.AdCount applications
+        </div>
+    }
+</div>
+
+
+
+
+<table class="table w-50 mx-auto">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Sector Name
+        </th>
+        <th>
+            Company Name
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            Delete
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.AD.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AD.Price)$
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AD.Sector.SectorName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AD.Company.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        <a href="/MemberProfile/MyApplicationDetailSingle/@item.AdID" class="btn btn-primary">Details</a>
+
+    </td>
+    <td>
+        <a href="/MemberProfile/DeleteMyApplication/@item.ApplicationID" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+
+    </td>
+
+</tr>
+    }
+
+</table>

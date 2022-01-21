@@ -1,0 +1,62 @@
+﻿
+@using HumanResourcesWebsite.Models;
+@model List<Applicant>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Shared/_adminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Members", FormMethod.Get))
+{
+
+<div style="margin-bottom:15px; margin-top:15px;">
+    <b>Enter Applicant Name: </b>
+    @Html.Editor("ara")
+    <input class="btn btn-info" type="submit" value="Search" />
+</div>
+}
+<table class="table table-bordered">
+    <tr style="background-color:rgb(252, 178, 22)">
+        <th>Applicant ID</th>
+        <th>Name</th>
+        <th>SurName</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Adress</th>
+        <th>Phone</th>
+        <th>CvLink</th>
+        <th>MilitaryState</th>
+        <th>ExperienceYear</th>
+        <th>GraduationLevel</th>
+        <th>Courses</th>
+        <th>Point</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+
+    @foreach (var k in Model)
+    {
+    <tr>
+        <td>@k.ApplicantID</td>
+        <td>@k.Name</td>
+        <td>@k.Surname</td>
+        <td>@k.Email</td>
+        <td>@k.Password</td>
+        <td>@k.Adress</td>
+        <td>@k.Phone</td>
+        <td>@k.CvLink</td>
+        <td>@k.MilitaryState</td>
+        <td>@k.ExperienceYear</td>
+        <td>@k.GraduationLevel</td>
+        <td>@k.Courses</td>
+        <td>@k.Point</td>
+        <td><a href="/Members/DeleteMember/@k.ApplicantID" class="btn btn-danger">Delete</a></td>
+        <td><a href="/Members/UpdateMember/@k.ApplicantID" class="btn btn-success">Update</a></td>
+
+
+    </tr>
+
+    }
+</table>
+<a href="/Members/AddMember/" class="btn btn-primary">ADD APPLICANT</a>
+

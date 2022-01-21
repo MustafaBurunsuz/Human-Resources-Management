@@ -1,0 +1,45 @@
+﻿@using HumanResourcesWebsite.Models
+@model List<ApplicantAd>
+@{
+    ViewBag.Title = "ShowApplicant";
+    Layout = "~/Shared/CompanyLayout.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr style="background-color:darkcyan">
+        <th>ApplicantID</th>
+        <th>Name</th>
+        <th>Surname </th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Adress</th>
+        <th>MilitaryState</th>
+        <th>ExperienceYear</th>
+        <th>GraduationLevel</th>
+        <th>Courses</th>
+        <th>Status</th>
+        <th>Change Status</th>
+    </tr>
+
+    @foreach (var k in Model)
+    {
+    <tr>
+        <td>@k.Applicant.ApplicantID</td>
+        <td>@k.Applicant.Name</td>
+        <td>@k.Applicant.Surname</td>
+        <td>@k.Applicant.Email</td>
+        <td>@k.Applicant.Phone</td>
+        <td>@k.Applicant.Adress</td>
+        <td>@k.Applicant.MilitaryState</td>
+        <td>@k.Applicant.ExperienceYear</td>
+        <td>@k.Applicant.GraduationLevel</td>
+        <td>@k.Applicant.Courses</td>
+        <td>@k.Status</td>
+        <td><a href="/CompanyAD/ChangeStatus/@k.ApplicationID" class="btn btn-success">Update</a></td>
+    </tr>
+    }
+</table>
+
+
+

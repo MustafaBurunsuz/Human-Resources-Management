@@ -1,0 +1,180 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <title>Human resources Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href="~/proje-part1/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/style6.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/fontawesome-all.css" rel="stylesheet">
+</head>
+<body>
+    <!-- banner-inner -->
+    <div id="demo-1" class="page-content">
+        <div class="dotts">
+            <div class="header-top">
+                <header>
+                    <div class="top-head ml-lg-auto text-center">
+                        <div class="row top-vl">
+
+                            @if (Session["Email"] == null)
+                            {
+                                <div class="col-md-3 sign-btn">
+                                    <a href="/MemberLogin/Login" class="font-weight-bold btn btn-danger">
+                                        <i class="fas fa-lock"></i> Sign In
+                                    </a>
+                                </div>
+                                <div class="col-md-3 sign-btn">
+                                    <a href="/CompanyLogin/Login" class="font-weight-bold btn btn-danger">
+                                        <i class="fas fa-lock"></i> Company  Sign In
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-3">
+                                    <a href="/MemberProfile/Profil" class="font-weight-bold btn btn-danger">Welcome @Session["Email"].ToString()</a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="/MemberLogin/Logout" class="font-weight-bold btn btn-danger">Logout</a>
+                                </div>
+                            }
+
+
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="logo">
+                            <h1>
+                                <a class="navbar-brand font-weight-bold" href="/Home/Index">
+                                    <i class="fab fa-codepen text-danger"></i> Mind Units
+                                </a>
+                            </h1>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class="fas fa-bars"></i>
+                            </span>
+
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-lg-auto text-center">
+                                <li class="nav-item">
+
+                                    <a class="nav-link font-weight-bold text-danger" href="/Home/Index">
+                                        Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link font-weight-bold text-danger" href="/Home/How">How it works</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold text-danger" href="/Home/Contact">Contact</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+
+
+    <!--footer -->
+    <footer class="footer-emp-w3layouts bg-dark dotts py-lg-5 py-3">
+        <div class="container-fluid px-lg-5 px-3">
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid-wthree-w3ls">
+                    <div class="footer-title">
+                        <h3 class="font-weight-bold" style="color: white; opacity:0.8;">About Us</h3>
+                    </div>
+                    <div class="footer-text">
+                        <p>The easiest way to have your job, both you and your future boss will find the best opportunity to hire the perfect personal for the right place at the right time</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 footer-grid-wthree-w3ls">
+                    <div class="footer-title">
+                        <h3 class="font-weight-bold" style="color: white; opacity:0.8;">Get in touch</h3>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Location:</h4>
+                        <p>Istanbul/Turkey</p>
+                        <div class="phone">
+                            <h4>Contact :</h4>
+                            <p>Phone :+90 536 XXX XX XX</p>
+                            <p>
+                                Email :
+                                <a href="mailto:info@example.com">info@example.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 footer-grid-wthree-w3ls">
+                    <div class="footer-title">
+                        <h3 class="font-weight-bold" style="color: white; opacity:0.8;">Quick Links</h3>
+                    </div>
+                    <ul class="links">
+                        <li>
+                            <a href="/Home/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    <ul class="links">
+                        <li>
+                            <a href="/Home/How">How it works</a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="copyright mt-4">
+                <p class="copy-right text-center ">
+                    &copy; Design by
+                    <a href="/Home/Index" class="font-weight-bold" style="color: #de0f17; opacity:0.8;">Mind Units</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+
+    <script src="~/proje-part1/js/jquery-1.11.1.min.js"></script>
+    <script src="~/proje-part1/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/proje-part1/js/classie-search.js"></script>
+    <script src="~/proje-part1/js/demo1-search.js"></script>
+    <script src="~/proje-part1/js/bootstrap.js"></script>
+    <script src="~/proje-part1/js/move-top.js"></script>
+    <script src="~/proje-part1/js/easing.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+</body>
+</html>

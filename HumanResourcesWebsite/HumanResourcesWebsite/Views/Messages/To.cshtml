@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "To";
+    Layout = "~/Shared/_homeLayout.cshtml";
+}
+
+@using HumanResourcesWebsite.Models
+@model List<Message>
+
+
+<h2>OutGoing Messages</h2>
+<br />
+<table class="table table-bordered">
+    <tr style="background-color:darkcyan">
+        <th>To</th>
+        <th>Title</th>
+        <th>Messages</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Receiver</td>
+            <td>@x.Contant</td>
+            <td>@x.Subject</td>
+            <td>@x.Date</td>
+        </tr>
+    }
+</table>
+

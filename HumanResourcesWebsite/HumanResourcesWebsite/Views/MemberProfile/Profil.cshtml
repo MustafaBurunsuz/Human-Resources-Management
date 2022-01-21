@@ -1,0 +1,94 @@
+﻿@model HumanResourcesWebsite.Models.Applicant
+
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Shared/_homeLayout.cshtml";
+}
+
+<div class="container w-75 my-4">
+    <div class=" d-flex justify-content-between">
+
+        <div class="col-md-6">
+            <div class="card" style="width:26rem;">
+                <img class="card-img-top" src="https://www.pandasecurity.com/en/mediacenter/src/uploads/2013/11/pandasecurity-facebook-photo-privacy.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="text-center font-weight-bold">@Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.Surname)</p>
+                    <p class="text-center font-weight-bold">@Html.DisplayFor(model => model.Email) </p>
+                    <p class="text-center mt-2">
+                        @Html.ActionLink("Edit Profile", "Edit", "MemberProfile", new { id = Model.ApplicantID }, new { @class = "btn btn-primary font-weight-bold" })
+                    </p>
+                    <p class="text-center mt-2">
+                        <a class="btn btn-danger" href="/MemberProfile/Myapplication">My Applications</a>
+                    </p>
+                    <p class="text-center mt-2">
+                        <a class="btn btn-Info" href="/Messages/Index">My Messages</a>
+                    </p>
+                    <p class="text-center mt-2">
+                        <a class="btn btn-warning" href="/Messages/To">Sent Messages</a>
+                    </p>
+                    <p class="text-center mt-2">
+                        <a class="btn btn-light" href="/Messages/NewMessage">New Message</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card ">
+                <ul class="list-group list-group-flush">
+                    <h6 class="text-center list-group-item text-white font-weight-bold" style="background-color: #de0f17; opacity:0.8;"> Profile Informations </h6>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Name</span>
+                        <p>@Html.DisplayFor(model => model.Name)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>SurName</span>
+                        <p>@Html.DisplayFor(model => model.Surname)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Email</span>
+                        <p>@Html.DisplayFor(model => model.Email)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Password</span>
+                        <p>@Html.DisplayFor(model => model.Password)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Adress</span>
+                        <p>@Html.DisplayFor(model => model.Adress)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Phone</span>
+                        <p>@Html.DisplayFor(model => model.Phone)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>CvLink</span>
+                        <p>@Html.DisplayFor(model => model.CvLink)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>ExperienceYear</span>
+                        <p>@Html.DisplayFor(model => model.ExperienceYear)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>MilitaryState</span>
+                        <p>@Html.DisplayFor(model => model.MilitaryState)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>GraduationLevel</span>
+                        <p>@Html.DisplayFor(model => model.GraduationLevel)</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Courses</span>
+                        <p>@Html.DisplayFor(model => model.Courses)</p>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

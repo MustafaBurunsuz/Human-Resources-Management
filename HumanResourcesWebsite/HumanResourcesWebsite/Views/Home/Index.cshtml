@@ -1,0 +1,468 @@
+﻿@model HumanResourcesWebsite.Models.HomeViewModel
+@{
+    Layout = null;
+}
+
+
+<html lang="zxx">
+
+<head>
+    <title>Human recources Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href="~/proje-part1/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/zoomslider.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/style6.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/proje-part1/css/fontawesome-all.css" rel="stylesheet">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+    <link href="~/Jquery/" rel="stylesheet" />
+
+    <script src="~/Jquery/jquery-1.4.2.js"></script>
+    <script src="~/Jquery/jquery-ui-1.8.2.custom.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#productName').autocomplete({
+                source: '@Url.Action("Search", "Home")'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="demo-1"  data-zs-src='["/proje-part1/images/1.jpg","/proje-part1/images/3.jpg"]' >
+        <div class="demo-inner-content">
+            <div class="header-top">
+                <header>
+                    <div class="top-head ml-lg-auto text-center">
+                        <div class="row">
+                            @if (Session["Email"] == null)
+                            {
+                                <div class="col-md-3 sign-btn">
+                                    <a href="/MemberLogin/Login" class="font-weight-bold btn btn-danger">
+                                        <i class="fas fa-lock"></i> Sign In
+                                    </a>
+                                </div>
+                                <div class="col-md-3 sign-btn">
+                                    <a href="/CompanyLogin/Login" class="font-weight-bold btn btn-danger">
+                                        <i class="fas fa-lock"></i> Company Sign In
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-3">
+                                    <a href="/MemberProfile/Profil" class="font-weight-bold btn btn-danger">Welcome @Session["Email"].ToString()</a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="/MemberLogin/Logout" class="font-weight-bold btn btn-danger">Logout</a>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="logo">
+                            <h1>
+                                <a class="navbar-brand font-weight-bold " href="/Home/Index">
+                                    <i class="fab fa-codepen text-danger"></i>MindUnits
+                                </a>
+                            </h1>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class="fas fa-bars"></i>
+                            </span>
+
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-lg-auto text-center" style="font-size:18px;">
+                                <li class="nav-item ">
+                                    <a class="nav-link font-weight-bold text-danger " href="/Home/Index">
+                                        Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold text-danger" href="/Home/How">How it works</a>
+                                </li>
+                                <li class="nav-item dropdown ">
+                                    <a class="nav-link dropdown-toggle font-weight-bold text-danger" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Companies
+                                        <i class="fas fa-angle-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                        <style>
+                                            .scrollable-menu {
+                                                height: auto;
+                                                max-height: 200px;
+                                                overflow-x: hidden;
+                                            }
+                                        </style>
+                                        <ul class="scrollable-menu">
+                                            @foreach (var item in Model.Company)
+                                            {
+                                                     <li style="list-style-type:none;">
+                                                        <a class="dropdown-item" href="/Home/CompanyAdDetail/@item.CompanyID">@item.Name</a>
+                                                     </li> 
+                                            }
+                                        </ul>
+                                        
+                                    </div>
+                                    
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold text-danger" href="/Home/Contact">Contact</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </header>
+            </div>
+            <div class="banner-info-w3layouts text-center">
+
+                <h3 class="font-weight-bold">
+                    <span>Find the Right Job</span>
+
+                </h3>
+                <p class="font-weight-bold ">Your job search starts and ends with us.</p>
+
+
+                @using (Html.BeginForm("FilterJobs", "Home", FormMethod.Get))
+                {<div style="margin-top:15px;" class="d-flex justify-content-center container mx-auto">
+                        @Html.Editor("ara", new { htmlAttributes = new { @class = "form-control w-50 border-0" } })
+                        <input style="border-radius:0;" class="btn btn-danger w-25" type="submit" value="Find Job" />
+                    </div>
+                }
+            </div>
+        </div> 
+    </div>
+
+    <section class="banner-bottom-wthree py-lg-5 py-md-5 py-3" >
+        <div class="container" >
+            <div class="inner-sec-w3ls py-lg-5  py-3">
+                <h3 class="tittle text-center mb-lg-4 mb-3 font-weight-bold">All Sectors</h3>
+                <div class="d-flex justify-content-center flex-wrap populor_category_grids mt-5" >
+                    @foreach (var item in Model.Sectors)
+                    {
+                    <div class="col-md-3 category_grid" >                    
+                            <div class="view " style="background-color: #de0f17; opacity:0.8;">
+                                <div class="category_text_box">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <a href="/Home/SectorAdDetail/@item.SectorID">
+                                        <h3>@item.SectorName</h3>
+                                    </a>
+                                      
+                                </div>
+                              
+                            </div>
+                        
+                        <br />
+                    </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner-bottom-wthree pb-lg-5 pb-md-4 pb-3">
+        <div class="container">
+            <div class="inner-sec-w3ls py-lg-5  py-3">
+                <h3 class="tittle text-center mb-lg-4 mb-3 font-weight-bold">
+
+                    Latest Job flow-positions
+                </h3>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="menu-grids mt-4">
+                            <div class="row t-in">
+                                <div class="col-lg-8 text-info-sec">
+                                    @foreach (var item in Model.AD)
+                                    {
+                                        <div class="job-post-main row mt-3">
+                                            <div class="col-md-9 job-post-info text-left">
+                                                <div class="job-post-icon">
+                                                    <img class="img-fluid" src="@item.Company.LogoLink" />
+                                                </div>
+                                                <div class="job-single-sec">
+                                                    <h4 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">
+                                                        @item.Title
+                                                    </h4>
+                                                    <p class="my-2">@item.Company.Name</p>
+                                                    <ul class="job-list-info d-flex">
+                                                        <li>
+                                                            <i class="fas fa-clock"></i>@item.AdEndDate.Value.ToShortDateString()
+                                                        </li>
+                                                     
+                                                        <li>
+                                                            <i class="fas fa-dollar-sign"></i>@item.Price
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-user"></i>@item.NumberOfApplications
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-md-3 job-single-time text-right d-flex align-items-center">
+
+                                                <a href="/Home/LatestAdDetailSingle/@item.AdID" class="aply-btn ">Detail</a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="col-lg-4 text-info-sec mt-4">
+                                    <img src="/proje-part1/images/job-1.jpg" alt=" " class="img-fluid" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="banner-bottom-wthree mid py-lg-5 py-3">
+        <div class="container">
+            <div class="inner-sec-w3ls py-lg-5  py-3">
+                <div class="mid-info text-center pt-3">
+                    <h3 class="tittle text-center cen mb-lg-5 mb-3">
+                        Make a Difference with Your Online Resume!
+                    </h3>
+                    <p></p>
+                    <div class="resume">
+                        <a class="font-weight-bold" href="#" data-toggle="modal" data-target="#exampleModalCenter2">
+                            <i class="far fa-user"></i> Create Account
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="banner-bottom-wthree bg-light py-lg-5 py-3 text-center">
+        <div class="container">
+            <div class="inner-sec-w3ls py-lg-4 py-md-4 py-3">
+                <h3 class="tittle text-center mb-lg-5 mb-3 font-weight-bold">Project Members</h3>
+                <div class="row mt-5">
+                    <div class="col-lg-3 member-main text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="member-img">
+                                    <img src="~/proje-part1/images/team1.jpg" alt=" " class="img-fluid rounded-circle" style="width: 223px; height: 223px;">
+                                </div>
+                                <div class="member-info text-center py-lg-4 py-2">
+                                    <h4 style="color: #de0f17; opacity:0.8;">Muhammed basım</h4>
+
+                                    <p class="my-4"> Computer Engineering Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 member-main text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="member-img">
+                                    <img src="~/proje-part1/images/anonim.jpeg" alt=" " class="img-fluid rounded-circle">
+                                </div>
+                                <div class="member-info text-center py-lg-4 py-2">
+                                    <h4 style="color: #de0f17; opacity:0.8;">Mehmet Kağan</h4>
+
+                                    <p class="my-4">
+                                        Computer Engineering Student
+
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 member-main text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="member-img">
+                                    <img src="~/proje-part1/images/team3.jpg" alt=" " class="img-fluid rounded-circle">
+                                </div>
+                                <div class="member-info text-center py-lg-4 py-2">
+                                    <h4 style="color: #de0f17; opacity:0.8;">Muhammet AKSOY</h4>
+
+                                    <p class="my-4">
+                                        Computer Engineering Student
+
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 member-main text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="member-img">
+                                    <img src="~/proje-part1/images/team4.jpg" alt=" " class="img-fluid rounded-circle">
+                                </div>
+                                <div class="member-info text-center py-lg-4 py-2">
+                                    <h4 style="color: #de0f17; opacity:0.8;">Mustafa Burunsuz</h4>
+                                    <p class="my-4">
+                                        Computer Engineering Student
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 member-main text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="member-img">
+                                    <img src="~/proje-part1/images/anonim.jpeg" alt=" " class="img-fluid rounded-circle" style="width: 223px; height: 223px;">
+                                </div>
+                                <div class="member-info text-center py-lg-4 py-2">
+                                    <h4 style="color: #de0f17; opacity:0.8;">Muratcan Tüfekçi</h4>
+                                    <p class="my-4">
+                                        Computer Engineering Student
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="banner-bottom-wthree py-lg-5 py-3">
+        <div class="container">
+            <div class="inner-sec-w3ls py-lg-5  py-3">
+                <h3 style="color: black;" class="tittle cen text-center mb-lg-5 mb-3 font-weight-bold">
+                   Our Stats
+                </h3>
+                <div class="stats row mt-5">
+                    <div class="col-md-4 stats_left counter_grid text-center">
+
+                        <p style="color: black;" class="counter">@ViewBag.numberofpostedjobs</p>
+                        <h4 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">Jobs Posted</h4>
+                    </div>
+
+                    <div class="col-md-4 stats_left counter_grid2 text-center">
+
+                        <p style="color: black;" class="counter">@ViewBag.numberofcompanies</p>
+                        <h4 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">Companies</h4>
+                    </div>
+                    <div class="col-md-4 stats_left counter_grid3 text-center">
+
+                        <p style="color: black;" class="counter">@ViewBag.numberofmembers</p>
+                        <h4 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">Members</h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//stats-->
+    <br>
+    <br><br>
+
+
+    <!--footer -->
+    <footer class="footer-emp-w3layouts bg-dark dotts py-lg-5 py-3">
+        <div class="container-fluid px-lg-5 px-3">
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid-wthree-w3ls">
+                    <div class="footer-title">
+                        <h3 class="font-weight-bold">About Us</h3>
+                    </div>
+                    <div class="footer-text">
+                        <p>The easiest way to have your job, both you and your future boss will find the best opportunity to hire the perfect personal for the right place at the right time</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 footer-grid-wthree-w3ls">
+                    <div class="footer-title">
+                        <h3 class="font-weight-bold">Get in touch</h3>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Location:</h4>
+                        <p>Istanbul/Turkey</p>
+                        <div class="phone">
+                            <h4 >Contact :</h4>
+                            <p>Phone :+90 536 XXX XX XX</p>
+                            <p>
+                                Email :
+                                <a href="mailto:info@example.com">info@example.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 footer-grid-wthree-w3ls">
+                    <div class="footer-title">
+                        <h3 class="font-weight-bold">Quick Links</h3>
+                    </div>
+                    <ul class="links">
+                        <li>
+                            <a href="/Home/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    <ul class="links">
+                        <li>
+                            <a href="/Home/How">How it works</a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="copyright mt-4">
+                <p class="copy-right text-center ">
+                    &copy; Design by
+                    <a href="/Home/Index">Mind Units</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/proje-part1/js/jquery-1.11.1.min.js"></script>
+    <script src="~/proje-part1/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/proje-part1/js/jquery.zoomslider.min.js"></script>
+    <script src="~/proje-part1/js/classie-search.js"></script>
+    <script src="~/proje-part1/js/demo1-search.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".dropdown").hover(
+                function() {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function() {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <script src="~/proje-part1/js/jquery.waypoints.min.js"></script>
+    <script src="~/proje-part1/js/jquery.countup.js"></script>
+    <script src="~/proje-part1/js/bootstrap.js"></script>
+    <script src="~/proje-part1/js/move-top.js"></script>
+    <script src="~/proje-part1/js/easing.js"></script>
+</body>
+
+</html>

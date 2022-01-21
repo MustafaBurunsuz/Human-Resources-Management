@@ -1,0 +1,54 @@
+﻿
+
+
+@using HumanResourcesWebsite.Models
+@model List<AD>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Shared/CompanyLayout.cshtml";
+}
+<br />
+<h2>AD İnfo</h2>
+<br />
+<table class="table table-bordered">
+    <tr style="background-color:darkcyan">
+        <th>AD ID</th>
+        <th>Title</th>
+        <th>Information</th>
+        <th>Start date</th>
+        <th>End Date</th>
+        <th>Experiences</th>
+        <th>Education Level</th>
+        <th>Military State</th>
+        <th>Applicant Number</th>
+        <th>Price</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Show Applicant</th>
+
+    </tr>
+
+    @foreach (var k in Model)
+    {
+<tr>
+
+    <td>@k.AdID</td>
+    <td>@k.Title</td>
+    <td>@k.Information</td>
+    <td>@k.AdStartDate</td>
+    <td>@k.AdEndDate</td>
+    <td>@k.Experiences</td>
+    <td>@k.EducationLevel</td>
+    <td>@k.MilitaryState</td>
+    <td>@k.NumberOfApplications</td>
+    <td>@k.Price</td>
+
+    <td><a href="/CompanyAD/DeleteAD/@k.AdID" class="btn btn-danger">Delete</a></td>
+    <td><a href="/CompanyAD/GetAD/@k.AdID" class="btn btn-success">Update</a></td>
+    <td><a href="/CompanyAD/ShowApplicant/@k.AdID" class="btn btn-success" style="background-color:lightseagreen">Show Applicant</a></td>
+
+</tr>
+    }
+</table>
+
+<a href="/CompanyAd/AddAD/" class="btn btn-primary">Add New AD</a>

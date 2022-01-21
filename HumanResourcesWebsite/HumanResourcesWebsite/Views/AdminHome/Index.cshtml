@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Shared/_adminLayout.cshtml";
+}
+
+<link href="~/web2/css/style.css" rel="stylesheet" />
+<link href="~/web2/css/jqvmap.css" rel="stylesheet" />
+<script src="~/web2/js/Chart1.js"></script>
+<script src="~/web2/js/jquery.min.js"></script>
+<script src="~/web2/js/jquery.vmap.js"></script>
+<script src="~/web2/js/jquery.vmap.sampledata.js"></script>
+<script src="~/web2/js/jquery.vmap.world.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: '#333333',
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#666666',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#C8EEFF', '#006491'],
+            normalizeFunction: 'polynomial'
+        });
+    });
+</script>
+<script>
+    $(document).ready(function (c) {
+        $('.alert-close6').on('click', function (c) {
+            $('.world-map').fadeOut('slow', function (c) {
+                $('.world-map').remove();
+            });
+        });
+    });
+</script>
+<div class="list_of_members">
+    <div class="sales d-flex justify-content-between" >
+        <div class="icon">
+            <i class="fas fa-5x fa-user-friends"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.companies</h3>
+            <p>Companies</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="new-users d-flex justify-content-between">
+        <div class="icon">
+            <i class="fas fa-5x fa-user-friends"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.applicant</h3>
+            <p>Applicant</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="orders d-flex justify-content-between">
+        <div class="icon">
+            <i class="fas fa-5x fa-user-friends"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.ads</h3>
+            <p>Ads</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="visitors ">
+        <div class="icon">
+            <i class="fas fa-5x fa-user-friends"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.sectors</h3>
+            <p>Sectors</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+

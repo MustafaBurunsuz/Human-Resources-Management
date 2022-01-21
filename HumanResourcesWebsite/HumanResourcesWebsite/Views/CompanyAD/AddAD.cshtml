@@ -1,0 +1,69 @@
+﻿
+@model HumanResourcesWebsite.Models.AD
+@{
+    ViewBag.Title = "AddAD";
+    Layout = "~/Shared/CompanyLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+
+    </div>
+
+    <div style="margin-top:15px">
+
+        <label>AD Title</label>
+        @Html.TextBoxFor(y => y.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y => y.Title)
+
+    </div>
+
+    <div style="margin-top:15px">
+
+        <label>Information</label>
+        @Html.TextBoxFor(y => y.Information, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y => y.Information)
+
+    </div>
+    <div style="margin-top:15px">
+
+        <label>Start Date</label>
+        @Html.TextAreaFor(y => y.AdStartDate, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <label>End Date</label>
+        @Html.TextAreaFor(y => y.AdEndDate, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <label>Experiences</label>
+        @Html.TextAreaFor(y => y.Experiences, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <label>Education Level </label>
+        @Html.TextAreaFor(y => y.EducationLevel, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <label>Military State </label>
+        @Html.TextAreaFor(y => y.MilitaryState, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <label>Company</label>
+        @Html.TextAreaFor(y => y.CompanyID, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <button class="btn btn-info">Add AD</button>
+
+    </div>
+</form>

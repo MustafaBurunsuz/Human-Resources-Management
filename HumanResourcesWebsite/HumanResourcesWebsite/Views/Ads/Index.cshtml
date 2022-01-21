@@ -1,0 +1,71 @@
+﻿
+@using HumanResourcesWebsite.Models;
+@model List<AD>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Shared/_adminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Ads", FormMethod.Get))
+{
+       <div style="margin-bottom:15px; margin-top:15px;">
+            <b>Enter Ads Name: </b>
+            @Html.Editor("ara")
+            <input class="btn btn-info" type="submit" value="Search" />
+        </div>
+
+ }
+    <table class="table table-bordered table-responsive">
+        <tr style="background-color:rgb(252, 178, 22)">
+            <th>Ad ID</th>
+            <th>Title</th>
+            <th>NumberOfApplications</th>
+            <th>Information</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>Experiences</th>
+            <th>EducationLevel</th>
+            <th>MilitaryState</th>
+            <th>Price</th>
+            <th>Company Name</th>
+            <th>Sector Name</th>
+            <th>Criterion1</th>
+            <th>Criterion2</th>
+            <th>Criterion3</th>
+            <th>Criterion4</th>
+            <th>Criterion5</th>
+
+            <th>Delete</th>
+            <th>Update</th>
+            <th>Show Applicant</th>
+
+        </tr>
+
+        @foreach (var k in Model)
+        {
+            <tr>
+                <td>@k.AdID</td>
+                <td>@k.Title</td>
+                <td>@k.NumberOfApplications</td>
+                <td>@k.Information</td>
+                <td>@k.AdStartDate</td>
+                <td>@k.AdEndDate</td>
+                <td>@k.Experiences</td>
+                <td>@k.EducationLevel</td>
+                <td>@k.MilitaryState</td>
+                <td>@k.Price</td>
+                <td>@k.Company.Name</td>
+                <td>@k.Company.Sector.SectorName</td>
+                <td>@k.Criterion1</td>
+                <td>@k.Criterion2</td>
+                <td>@k.Criterion3</td>
+                <td>@k.Criterion4</td>
+                <td>@k.Criterion5</td>
+                <td><a href="/Ads/DeleteAd/@k.AdID" class="btn btn-danger">Delete</a></td>
+                <td><a href="/Ads/UpdateAd/@k.AdID" class="btn btn-success">Update</a></td>
+                <td><a href="/Ads/Showallapplicant/@k.AdID" class="btn btn-primary">Show Applicants</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Ads/AddAd/" class="btn btn-primary">ADD AD</a>
+

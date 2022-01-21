@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HumanResourcesWebsite.Models.ApplicantAd>
+
+@{
+    ViewBag.Title = "Showallapplicant";
+    Layout = "~/Shared/_adminLayout.cshtml";
+}
+
+<h2>Show Applicants</h2>
+
+<table class="table table-bordered ">
+    <tr style="background-color:rgb(252, 178, 22)">
+
+        <th>Name</th>
+        <th>SurName</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Adress</th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.Adress)
+        </td>
+
+
+    </tr>
+}
+
+</table>

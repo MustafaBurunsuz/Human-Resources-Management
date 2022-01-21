@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "NewMessage";
+    Layout = "~/Shared/CompanyLayout.cshtml";
+}
+
+
+
+@model HumanResourcesWebsite.Models.Message
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>Receiver</label>
+        @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Title</label>
+        @Html.TextBoxFor(x => x.Contant, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Subject</label>
+        @Html.TextAreaFor(x => x.Subject, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1">Send</button>
+    </div>
+</form>
+
+
+

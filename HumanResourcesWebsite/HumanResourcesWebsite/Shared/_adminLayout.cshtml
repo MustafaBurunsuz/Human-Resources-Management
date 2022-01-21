@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Human Resources WebSite</title>
+    <link href="~/webpanel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/webpanel/css/simple-sidebar.css" rel="stylesheet">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">Admin Panel</div>
+            <div class="list-group list-group-flush">
+                <a href="/AdminHome/Index/" class="list-group-item list-group-item-action bg-light">Home</a>
+                <br />
+                <a href="/Companies/Index/" class="list-group-item list-group-item-action bg-light">Companies</a>
+                <br />
+                <a href="/Members/Index/" class="list-group-item list-group-item-action bg-light">Members</a>
+                <br />
+                <a href="/Ads/Index/" class="list-group-item list-group-item-action bg-light">Ads</a>
+                <br />
+                <a href="/Sectors/Index/" class="list-group-item list-group-item-action bg-light">Sectors</a>
+                <br />
+                <a href="/Contact/Index/" class="list-group-item list-group-item-action bg-light">Contact</a>             
+            </div>
+        </div>
+
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom d-flex justify-content-end" >
+
+             <p class="font-weight-bold mr-4">Welcome <span style="color: #de0f17;">@Session["Email"].ToString()</span></p>
+             <a href="/CompanyLogin/Logout" class="font-weight-bold btn btn-primary">Çıkış Yap</a>
+
+                      
+            </nav>
+            <div class="container-fluid">   
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="~/webpanel/vendor/jquery/jquery.min.js"></script>
+    <script src="~/webpanel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+﻿@using HumanResourcesWebsite.Models;
+@model LatestAdDetailSingleViewModel
+@{
+    ViewBag.Title = "LatestAdDetailSingle";
+    Layout = "~/Shared/_homeLayout.cshtml";
+}
+
+<section class="banner-bottom-wthree py-lg-5 py-md-5 py-3">
+    <div class="container">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-danger text-center">
+                @TempData["Message"]
+            </div>
+        }
+        @foreach (var item in Model.ADList)
+        {
+            <div class="inner-sec-w3ls py-lg-5  py-3">
+                <div class="single-user-candidate">
+                    <div class="user-detail-info text-center">
+                        <div class="user-pic">
+                           
+                            <img class="img-fluid rounded-circle" src="@item.Company.LogoLink" />
+                        </div>
+                        <div class="user-content-info emply-resume-info text-center mt-4">
+                            <h4>
+                                <a href="#">@item.Company.Name</a>
+                            </h4>
+                            <p>
+                                <i class="fas fa-map-marker-alt"></i> @item.Company.Adress
+                            </p>
+                            <p>
+                                <i class="fas fa-user"></i> @item.Company.NumberOfWorkers
+                            </p>
+                            <p>
+                                <i class="fas fa-calendar"></i> @item.Company.FoundationYear
+                            </p>
+
+                            <ul class="footer-social text-center mt-lg-4 mt-5">
+
+                                <li class="nav-item active">
+                                    <a class="nav-link text-white" href="index.html">
+                                        <i class="fas fa-search"></i>
+                                        @item.Company.WebSite
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--row -->
+                <div class="row qualification-details mt-5 d-flex justify-content-between alert " style="background-color:#de0f17; opacity:0.8;">
+
+                    <div class="col-md-3 qual-grid">
+                        <div class="qual-icon text-center ">
+                            <i class="fas fa-dollar-sign text-white"></i>
+                        </div>
+                        <div class="qual-info ">
+                            <h4 class="text-white">Price</h4>
+                            <p class="text-white">@item.Price</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-3 qual-grid">
+                        <div class="qual-icon text-center">
+                            <i class="fas fa-bars text-white"></i>
+                        </div>
+                        <div class="qual-info">
+                            <h4 class="text-white">Category</h4>
+                            <p class="text-white">@item.Company.Sector.SectorName</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 candidate-ab-info mt-5 ">
+                    <div class="emply-resume-list" style="border: 4px solid rgba(255, 15, 23,0.8);">
+
+
+                        <h1 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">@item.Title</h1>
+                        <h5 class="j-b mb-3 mt-3">Job Description</h5>
+                        <p>
+                            @item.Criterion1
+                            <br>
+                            @item.Criterion2
+                            <br>
+                            @item.Criterion3
+                            <br>
+                            @item.Criterion4
+                            <br>
+                            @item.Criterion5
+                            <br>
+
+
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-5 ">
+
+                    <div class="emply-resume-list  mb-3" style="border: 4px solid rgba(255, 15, 23,0.8);">
+                        <h4 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">Aday Kriterleri</h4>
+                        <br />
+                        <p><strong>Experience:</strong>@item.Experiences </p>
+                        <p><strong>Eğitim Seviyesi:</strong>@item.EducationLevel</p>
+
+                        <p><strong>Military State:</strong>@item.MilitaryState</p>
+
+                    </div>
+                </div>
+            </div>
+        }
+        @using (Html.BeginForm("ApplyJob", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.AdId)
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Apply" class="btn btn-danger" />
+                </div>
+            </div>
+        }
+
+    </div>
+
+</section>

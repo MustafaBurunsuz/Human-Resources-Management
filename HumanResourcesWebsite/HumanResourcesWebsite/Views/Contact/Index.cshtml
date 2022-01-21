@@ -1,0 +1,39 @@
+﻿
+@using HumanResourcesWebsite.Models;
+@model List<Contact>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Shared/_adminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Contact", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px;">
+        <b>Enter Mail: </b>
+        @Html.Editor("ara")
+        <input class="btn btn-info" type="submit" value="Search" />
+    </div>
+}
+<table class="table table-bordered">
+    <tr style="background-color:rgb(252, 178, 22);" >
+        <th>Contact ID</th>
+        <th>Name</th>
+        <th>Mail</th>
+        <th>Title</th>
+        <th>Message</th>
+    </tr>
+
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>@k.ID</td>
+            <td>@k.Name</td>
+            <td>@k.Mail</td>
+            <td>@k.Title</td>
+            <td>@k.Message</td>
+        </tr>
+
+    }
+</table>
+
+

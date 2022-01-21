@@ -1,0 +1,59 @@
+﻿@using HumanResourcesWebsite.Models
+@model List<AD>
+@{
+    ViewBag.Title = "CompanyDetail";
+    Layout = "~/Shared/_homeLayout.cshtml";
+}
+
+
+<div class="container">
+    <h1 class="alert text-center text-white my-4 " style="background-color:#de0f17; opacity:0.8;">@ViewBag.deneme</h1>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="menu-grids mt-4">
+                <div class="row t-in">
+                    <div class="col-lg-12 text-info-sec">
+                        @foreach (var item in Model)
+                        {
+                            <!--/job1-->
+                            <div class="job-post-main row my-2">
+                                <div class="col-md-9 job-post-info text-left">
+                                    <div class="job-post-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="job-single-sec">
+                                        <h4 class="font-weight-bold" style="color: #de0f17; opacity:0.8;">
+                                            @item.Title
+                                        </h4>
+                                        <p class="my-2">@item.Company.Name</p>
+                                        <ul class="job-list-info d-flex">
+                                            <li>
+                                                <i class="fas fa-clock"></i>@item.AdEndDate.Value.ToShortDateString()
+                                            </li>
+
+                                            <li>
+                                                <i class="fas fa-dollar-sign"></i>@item.Price
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-user"></i>@item.NumberOfApplications
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-md-3 job-single-time text-right d-flex align-items-center">
+
+                                    <a href="/Home/CompanyAdDetailSingle/@item.AdID" class="aply-btn ">Detail</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+
+
+
